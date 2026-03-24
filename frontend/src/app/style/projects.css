@@ -1,0 +1,228 @@
+.dark-theme .projects-container {
+    background-color: #052719;
+    color: #fffae6;
+    font-family: Inter, ui-sans-serif, system-ui, sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    max-width: 940px;
+    height: auto;
+    position: relative;
+    top: 3rem;
+    margin-inline: auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column
+}
+
+.dark-theme .projects-wrapper {
+    background-color: #052719;
+    margin-top: 10rem;
+    margin-bottom: 150px;
+}
+
+.dark-theme .projects-page-title {
+    color: #fffae6;
+    background-color: #052719;
+    border-bottom-style: solid;
+    border-bottom-width: thin;
+    border-bottom-color: #bfc2ae;
+    font-family: 'Optima', sans-serif;
+    font-size: 22px;
+    font-weight: 500;
+    width: auto;
+    height: auto;
+    margin-inline: 20%;
+    padding-bottom: .3rem;
+    margin-bottom: 3%;
+
+}
+
+.dark-theme .project-wrapper {
+    background-color: #052719;
+    color: #fffae6;
+    border-bottom-style: solid;
+    border-bottom-width: thin;
+    border-bottom-color: #3b3d2b7b;
+    max-width: 100%;
+    height: auto;
+    margin-inline: 20%;
+    margin-bottom: 2%;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: transform 0.5s ease-in;
+}
+
+.dark-theme .project-wrapper:hover {
+    background-color: #bfc2ae54;
+    -webkit-transform: scale(1.02);
+    transform: scale(1.02);
+}
+
+.dark-theme .project-title {
+    color: #fffae6;
+    width: 90%;
+    height: auto;
+    position: relative;
+    top: 1rem;
+    left: 1rem;
+    margin-bottom: 10px;
+    display: flex;
+    font-size: medium;
+    font-weight: 500;
+}
+
+.dark-theme .project-description {
+    /*background: chocolate;*/
+    width: auto;
+    height: auto;
+    position: relative;
+    left: 1rem;
+    margin-inline: 2%;
+    margin-bottom: 20px;
+    font-size: 14px;
+    font-weight: 300;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.dark-theme .learn-more-button {
+    background-color: #052719;
+    color: #fffae6;
+    width: 50px;
+    padding: 2px;
+    margin-left: 80%;
+    text-align: center;
+    position: relative;
+    bottom: 10px;
+    font-size: xsmall;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    transition: color 0.2s ease-in-out;
+    opacity: 60%;
+}
+
+.dark-theme .learn-more-button:hover {
+    background-color: #ffa201;
+    color: #052719;
+    opacity: 100%;
+}
+
+
+
+/***************************************************************************************************************
+******************************************** LIGHT THEME OVERRIDE***********************************************
+***************************************************************************************************************/
+
+
+.projects-container {
+    background-color: #fffae6;
+    color: #052719;
+    font-family: Inter, ui-sans-serif, system-ui, sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    max-width: 940px;
+    height: auto;
+    position: relative;
+    top: 3rem;
+    bottom: 9rem;
+    margin-inline: auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column
+}
+
+.projects-wrapper {
+    background-color: #fffae6;
+    margin-top: 10rem;
+    margin-bottom: 150px;
+}
+
+.projects-page-title {
+    background-color: #fffae6;
+    color: #052719;
+    border-bottom-style: solid;
+    border-bottom-width: thin;
+    border-bottom-color: #052719;
+    font-family: 'Optima', sans-serif;
+    font-size: 22px;
+    font-weight: 500;
+    width: auto;
+    height: auto;
+    margin-inline: 20%;
+    padding-bottom: .3rem;
+    margin-bottom: 5%;
+}
+
+.project-wrapper {
+    background-color: #fffae6;
+    color: #052719;
+    border-bottom-style: solid;
+    border-bottom-width: thin;
+    border-bottom-color: #cccbb3;
+    width: auto;
+    height: auto;
+    margin-inline: 20%;
+    margin-bottom: 2%;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: transform 0.5s ease-in;
+}
+
+.project-wrapper:hover {
+    background-color: #f6ecd4;
+    -webkit-transform: scale(1.02);
+    transform: scale(1.02);
+}
+
+.project-title {
+    color: #052719;
+    width: 90%;
+    height: auto;
+    position: relative;
+    top: 1rem;
+    left: 1rem;
+    margin-bottom: 10px;
+    display: flex;
+    font-size: medium;
+    font-weight: 500;
+}
+
+.project-description {
+    background-color: none;
+    width: 90%;
+    height: auto;
+    position: relative;
+    left: 1rem;
+    margin-inline: 2%;
+    margin-bottom: 20px;
+    font-size: small;
+    font-weight: 300;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.learn-more-button {
+    background: #fffae6;
+    color: #052719;
+    width: 50px;
+    padding: 2px;
+    margin-left: 80%;
+    text-align: center;
+    position: relative;
+    bottom: 10px;
+    font-size: xsmall;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    transition: color 0.2s ease-in-out;
+    opacity: 60%;
+}
+
+.learn-more-button:hover {
+    background-color: #ffa201;
+    color: #052719;
+    opacity: 100%;
+}

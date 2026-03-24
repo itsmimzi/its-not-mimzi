@@ -1,0 +1,36 @@
+# Python
+venv/
+activate/
+base/
+conda/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+
+# Django
+backend/db.sqlite3
+backend/staticfiles/
+*.log
+
+# Environment
+.env
+.env.*
+*.env
+
+# Next.js
+frontend/.next/
+frontend/node_modules/
+frontend/out/
+
+# OS
+.DS_Store
+.idea/
+*.pages
+
+# Assets at root (not for git)
+_its.jpg
+notMimzi_post_2.pages

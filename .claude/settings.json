@@ -1,0 +1,49 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(backend/**)",
+      "Edit(backend/**)",
+      "Read(frontend/**)",
+      "Edit(frontend/**)",
+      "Read(.claude/**)",
+      "Edit(.claude/**)",
+      "Bash(git status)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(npm run dev)",
+      "Bash(npm run build)",
+      "Bash(npm run lint)",
+      "Bash(python manage.py runserver)",
+      "Bash(python manage.py makemigrations:*)",
+      "Bash(python manage.py migrate)",
+      "Bash(python manage.py collectstatic)"
+    ],
+    "ask": [
+      "Bash(git push:*)",
+      "Bash(python manage.py createsuperuser)",
+      "Bash(python manage.py flush)"
+    ],
+    "deny": [
+      "Read(venv/**)",
+      "Edit(venv/**)",
+      "Read(activate/**)",
+      "Edit(activate/**)",
+      "Read(base/**)",
+      "Edit(base/**)",
+      "Read(conda/**)",
+      "Edit(conda/**)",
+      "Read(.env*)",
+      "Edit(.env*)",
+      "Read(backend/db.sqlite3)",
+      "Edit(backend/db.sqlite3)",
+      "Read(//Users/marymou/Desktop/**)",
+      "Edit(//Users/marymou/Desktop/**)",
+      "Bash(rm:*)",
+      "Bash(sudo:*)",
+      "Bash(curl:*)",
+      "Bash(pip install:*)"
+    ]
+  }
+}
