@@ -1,4 +1,4 @@
-# its-not-mimzi
+# ItsnotMimzi
 
 Personal portfolio and blog — [Maryam](link to live site once deployed).
 
