@@ -30,7 +30,7 @@ export default function ArticlePage() {
 
     if (loading) return <p className='loading-message'>Please wait while the minions do their work..</p>
     if (error) return <p>{error}</p>;
-    if (!post) return <p>You can panick now. We couldn't find the article. AAAHHHHHHH!</p>
+    if (!post) return <p>You can panick now. We couldn&apos;t find the article. AAAHHHHHHH!</p>
 
     const getDriveImage = (url) => {
         const match = url?.match(/\/d\/(.*?)\//);

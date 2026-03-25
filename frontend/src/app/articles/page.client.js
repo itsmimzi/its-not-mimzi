@@ -64,13 +64,14 @@ export default function Articles() {
           )}
           {!loading && !error && paged.map(post => (
 
-            <Link href={`/articles/${post.slug}`} className="post-link">
-              <div key={post.id} className="post-wrapper">
+            <Link key={post.id} href={`/articles/${post.slug}`} className="post-link">
+              <div className="post-wrapper">
                 <div className="post-media">
                   <img
                     src={getDriveImage(post.image_url)}
                     alt={post.title}
                     loading="lazy"
+                    // eslint-disable-next-line @next/next/no-img-element
                   />
                 </div>
                 <div className="post-title">

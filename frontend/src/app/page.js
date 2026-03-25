@@ -1,25 +1,8 @@
-/*export default function homepage() {
-  return (
-    <div className="home-container">
-      <div className="intro-wrapper">
-        <p className="intro-title">Hi, it's Mimzi.</p>
-        <p className="intro-title"><b>Software Engineer</b></p>
-        <p>
-          I am a software engineer, ui/ux designer, product planner, problem solver, mentor, forever student, minimalist, eternal optimist.
-        </p>
-      </div>
-      <div className="latest-post">
-
-      </div>
-    </div>
-  );
-}*/
-
 'use client'
 import { useState } from "react";
 
 
-export default function homepage() {
+export default function Homepage() {
   const [form, setForm] = useState({
     email: "",
     subject: "",
@@ -57,7 +40,7 @@ export default function homepage() {
       <div class="home-wrapper">
         <section>
           <div className="title-text">
-            <div>Hi, it's Mimzi.</div>
+            <div>Hi, it&apos;s Mimzi.</div>
             <br />
             <div>— though depending on the inbox, you might know me as Maryam (:</div>
           </div>
@@ -78,23 +61,23 @@ export default function homepage() {
               🧠 Tech — I build smart tools to simplify real-life chaos
               📊 Data — I love making messy information meaningful
               🔍 Storytelling — because context matters more than credentials.<br />
-              My work spans intelligent task schedulers, exploratory data projects, and reflective writing about what it's like to rebuild your career from the ground up. I’m not here to sell perfection — I’m more interested in the learning process, the pivot points, and the space between disciplines where creativity thrives.
-              You won’t find 10-step productivity hacks here.<br />
+              My work spans intelligent task schedulers, exploratory data projects, and reflective writing about what it&apos;s like to rebuild your career from the ground up. I&apos;m not here to sell perfection — I&apos;m more interested in the learning process, the pivot points, and the space between disciplines where creativity thrives.
+              You won&apos;t find 10-step productivity hacks here.<br />
               But you will find:
-              Honest accounts of what it’s like to switch careers in your late twenties.
+              Honest accounts of what it&apos;s like to switch careers in your late twenties.
               Observations about tech culture, impostor syndrome, and the problem with buzzwords —
               projects that blend curiosity, functionality, and just a bit of stubbornness.
             </p>
             <p className="body-text">
               This site is a journal, a portfolio, and a public proof-of-work — all in one.
-              If you’re into unpolished insights, slow ambition, and building without the buzzwords, welcome.<br />
-              I’m glad you’re here.
+              If you&apos;re into unpolished insights, slow ambition, and building without the buzzwords, welcome.<br />
+              I&apos;m glad you&apos;re here.
             </p>
           </article>
         </section>
         <section className="connect-section">
           <p className="connect-title">
-            Let's Connect
+            Let&apos;s Connect
           </p>
           <form className="contact-form" onSubmit={handleSubmit}>
             <div className="email">
@@ -118,9 +101,9 @@ export default function homepage() {
                 onChange={handleChange}
                 required>
                 <option disabled hidden selected>make a selection</option>
-                <option>I'd like to start a project</option>
-                <option>I'd like to ask a question</option>
-                <option>I'd like to make a proposal</option>
+                <option>I&apos;d like to start a project</option>
+                <option>I&apos;d like to ask a question</option>
+                <option>I&apos;d like to make a proposal</option>
               </select>
             </div>
             <div className="message">
