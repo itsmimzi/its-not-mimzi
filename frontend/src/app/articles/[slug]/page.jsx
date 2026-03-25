@@ -13,7 +13,8 @@ export default function ArticlePage() {
         if (!slug) return;
         const fetchPost = async () => {
             try {
-                const res = await fetch(`http://127.0.0.1:8000/api/posts/${slug}/`);
+                //const res = await fetch(`http://127.0.0.1:8000/api/posts/${slug}/`);
+                const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/posts/${slug}/`);
                 if (!res.ok) throw new Error('The article is having an existential crisis. Please try again later.');
                 const data = await res.json();
                 setPost(data);
@@ -60,7 +61,7 @@ export default function ArticlePage() {
                             const content = post.content || "";
                             const hasParagraphs = content.includes("</p>");
                             let firstPart, rest;
-                        
+
                             if (hasParagraphs) {
                                 const parts = content.split(/<\/p>/i);
                                 firstPart = parts[0] + parts[1] + parts[2] + "</p>";

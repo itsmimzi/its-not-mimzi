@@ -21,7 +21,8 @@ export default function Articles() {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const res = await fetch("http://127.0.0.1:8000/api/posts/");
+        //const res = await fetch("http://127.0.0.1:8000/api/posts/");
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/posts/`);
         if (!res.ok) throw new Error('Erreur ${res.status}');
         const data = await res.json();
         setPosts(data);

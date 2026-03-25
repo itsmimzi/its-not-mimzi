@@ -17,8 +17,10 @@ export default function Projects() {
                 setLoading(true);
 
                 const [localRes, githubRes] = await Promise.all([
-                    fetch("http://127.0.0.1:8000/api/projects/"),
-                    fetch("http://127.0.0.1:8000/api/github-projects/")
+                    //fetch("http://127.0.0.1:8000/api/projects/"),
+                    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/projects/`),
+                    //fetch("http://127.0.0.1:8000/api/github-projects/")
+                    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/github-projects/`)
                 ]);
 
                 if (!localRes.ok || !githubRes) {
