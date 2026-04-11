@@ -1,20 +1,13 @@
 from rest_framework import viewsets, status, generics
 from rest_framework.response import Response
 from django.core.mail import send_mail
-from rest_framework.views import APIView
-import requests
 
-from .models import Project, BlogPost, Contact
-from .serializers import ProjectSerializer, BlogPostSerializer, ContactSerializer
-
-
-class ProjectViewSet(viewsets.ModelViewSet):
-    queryset = Project.objects.order_by('-id')
-    serializer_class = ProjectSerializer
+from .models import BlogPost, Contact
+from .serializers import BlogPostSerializer, ContactSerializer
 
 
 class BlogPostViewSet(viewsets.ModelViewSet):
-    queryset        = BlogPost.objects.order_by('-published_at')
+    queryset = BlogPost.objects.order_by('-published_at')
     serializer_class = BlogPostSerializer
 
 
@@ -25,49 +18,35 @@ class ContactViewSet(viewsets.ModelViewSet):
         data = serializer.validated_data
 
         send_mail(
-            subject = f"[Contact Form] {data['subject']}",
-            message = f"From: {data['email']}\n\n{data['message']}",
-            from_email = None,
-            recipient_list = ['itsmimzi@gmail.com']
+            subject=f"[Contact Form] {data['subject']}",
+            message=f"From: {data['email']}\n\n{data['message']}",
+            from_email=None,
+            recipient_list=['itsmimzi@gmail.com'],
         )
-        return Response({'detail' : 'Message sent!'}, status=status.HTTP_200_OK)
 
+        send_mail(
+            subject="Thanks for reaching out — It's not Mimzi",
+            message=(
+                "Hi,\n\n"
+                "Thank you for your message, we usually respond within 48 hours!\n\n"
+                "— Mimzi"
+            ),
+            from_email=None,
+            recipient_list=[data['email']],
+            fail_silently=True,
+        )
 
-class GithubProjectsView(APIView):
-    def get(self, request):
-        gh_url = 'https://api.github.com/users/itsmimzi/repos'
-        resp = requests.get(gh_url, params={'sort': 'updated', 'per_page':5})
-        if resp.status_code != 200:
-            return Response(
-                {'detail': 'Cannot get Github Repos.'},
-                status=resp.status_code
-            )
-
-        repos = resp.json()
-        data = []
-        for r in repos:
-            if r.get('fork'):
-                continue
-            data.append({
-                'id': r['id'],
-                'title': r['name'],
-                'description': r['description'] or 'No description available',
-                'url': r['html_url'],
-            })
-
-        return Response(data, status=status.HTTP_200_OK)
+        return Response({'detail': 'Message sent!'}, status=status.HTTP_200_OK)
 
 
 class LatestPostsView(generics.ListAPIView):
-    def get(self, request):
-        posts = BlogPost.objects.order_by('-published_at')[:5]
-        serializer = BlogPostSerializer(posts, many=True)
+    serializer_class = BlogPostSerializer
 
-        return Response(serializer.data, status=status.HTTP_200_OK)
+    def get_queryset(self):
+        return BlogPost.objects.filter(status='published').order_by('-published_at')[:5]
 
 
 class PostDetailView(generics.RetrieveAPIView):
-    queryset = BlogPost.objects.all()
+    queryset = BlogPost.objects.filter(status='published')
     serializer_class = BlogPostSerializer
     lookup_field = 'slug'
-

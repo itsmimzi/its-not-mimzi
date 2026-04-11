@@ -1,129 +1,118 @@
-'use client'
-import { useState } from "react";
+async function fetchPosts() {
+  const base = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000";
+  try {
+    const res = await fetch(`${base}/api/posts/`, { cache: "no-store" });
+    if (!res.ok) return [];
+    return await res.json();
+  } catch {
+    return [];
+  }
+}
 
+function getDriveImage(url) {
+  if (!url) return "/img/post-placeholder.jpg";
+  const match = url.match(/\/d\/(.*?)\//);
+  return match ? `https://lh3.googleusercontent.com/d/${match[1]}=w1200` : url;
+}
 
-export default function Homepage() {
-  const [form, setForm] = useState({
-    email: "",
-    subject: "",
-    message: ""
+function formatDate(value) {
+  if (!value) return "";
+  return new Date(value).toLocaleDateString("en-US", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
   });
-  const [status, setStatus] = useState(null);
+}
 
-  const handleChange = (e) => {
-    setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
-  };
+const SECTION_LABELS = ["AI", "Startups", "Security", "Venture", "Apps"];
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setStatus("Envoi...");
-    try {
-      /*const res = await fetch("http://127.0.0.1:8000/api/contact/", {*/
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/contact/`, {
+export default async function Homepage() {
+  const posts = await fetchPosts();
+  const sorted = [...posts].sort(
+    (a, b) => new Date(b.published_at) - new Date(a.published_at)
+  );
 
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form)
-      });
-      if (!res.ok) throw new Error(await res.text());
-      alert("Thank you for your message!")
-      setStatus("Message successfully sent!");
-      setForm({ email: "", subject: "", message: "" });
-    } catch (err) {
-      console.error(err);
-      setStatus("Error! Check console log.");
-    }
-  };
+  const hero = sorted.find((p) => p.highlight) || sorted[0] || null;
+  const heroId = hero?.id;
+  const rest = sorted.filter((p) => p.id !== heroId);
+  const latest = rest.slice(0, 5);
+  const sectionPool = rest.slice(5);
 
   return (
-    <div className="home-container">
-      <div class="home-wrapper">
-        <section>
-          <div className="title-text">
-            <div>Hi, it&apos;s Mimzi.</div>
-            <br />
-            <div>— though depending on the inbox, you might know me as Maryam (:</div>
-          </div>
-          <article>
-            <p className="body-text">
-              <i>Forever student</i>,
-              <i> problem solver</i>,
-              <i> half overthinker half dreamer</i>,
-              <i> undying optimist.</i>
-            </p>
-            <p className="body-text">
-              I began my academic and professional path in chemical engineering, drawn to complexity, structure, and systems thinking.
-              Eventually, that curiosity led me to something equally intricate but infinitely more flexible: software.
-              I made the leap from lab experiments to debugging code — and discovered that well-written logic can be just as elegant (and chaotic) as a reaction mechanism.
-            </p>
-            <p className="body-text">
-              Today, I work at the intersection of
-              🧠 Tech — I build smart tools to simplify real-life chaos
-              📊 Data — I love making messy information meaningful
-              🔍 Storytelling — because context matters more than credentials.<br />
-              My work spans intelligent task schedulers, exploratory data projects, and reflective writing about what it&apos;s like to rebuild your career from the ground up. I&apos;m not here to sell perfection — I&apos;m more interested in the learning process, the pivot points, and the space between disciplines where creativity thrives.
-              You won&apos;t find 10-step productivity hacks here.<br />
-              But you will find:
-              Honest accounts of what it&apos;s like to switch careers in your late twenties.
-              Observations about tech culture, impostor syndrome, and the problem with buzzwords —
-              projects that blend curiosity, functionality, and just a bit of stubbornness.
-            </p>
-            <p className="body-text">
-              This site is a journal, a portfolio, and a public proof-of-work — all in one.
-              If you&apos;re into unpolished insights, slow ambition, and building without the buzzwords, welcome.<br />
-              I&apos;m glad you&apos;re here.
-            </p>
-          </article>
-        </section>
-        <section className="connect-section">
-          <p className="connect-title">
-            Let&apos;s Connect
+    <main className="mag-container">
+      <div className="mag-wrapper">
+        <header className="mag-masthead">
+          <p className="mag-kicker">It&apos;s not Mimzi</p>
+          <h1 className="mag-title">Notes from the in-between.</h1>
+          <p className="mag-sub">
+            A blog about building, pivoting, and thinking out loud.
           </p>
-          <form className="contact-form" onSubmit={handleSubmit}>
-            <div className="email">
-              <label for="email"></label>
-              <input
-                type="email"
-                placeholder="my e-mail is"
-                name="email"
-                id="email_input"
-                value={form.email}
-                onChange={handleChange}
-                required />
-            </div>
-            <div class="subject">
-              <label for="subject"></label>
-              <select
-                placeholder="Subject line"
-                name="subject"
-                id="subject_input"
-                value={form.subject}
-                onChange={handleChange}
-                required>
-                <option disabled hidden selected>make a selection</option>
-                <option>I&apos;d like to start a project</option>
-                <option>I&apos;d like to ask a question</option>
-                <option>I&apos;d like to make a proposal</option>
-              </select>
-            </div>
-            <div className="message">
-              <label for="message"></label>
-              <textarea
-                name="message"
-                placeholder="I'd like to chat about"
-                id="message_input"
-                cols="30"
-                rows="5"
-                value={form.message}
-                onChange={handleChange}
-                required></textarea>
-            </div>
-            <div className="submit">
-              <input type="submit" id="form_button" value="Send Message" />
-            </div>
-          </form>
+        </header>
+
+        <section className="mag-top">
+          {hero ? (
+            <a href={`/articles/${hero.slug}`} className="mag-hero">
+              <div className="mag-hero-media">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={getDriveImage(hero.image_url)} alt={hero.title} />
+              </div>
+              <div className="mag-hero-body">
+                <span className="mag-tag">Featured</span>
+                <h2 className="mag-hero-title">{hero.title}</h2>
+                {hero.excerpt && <p className="mag-hero-excerpt">{hero.excerpt}</p>}
+                <span className="mag-hero-date">{formatDate(hero.published_at)}</span>
+              </div>
+            </a>
+          ) : (
+            <div className="mag-hero mag-empty">No posts yet — come back soon.</div>
+          )}
+
+          <aside className="mag-latest">
+            <h3 className="mag-col-title">Latest</h3>
+            <ul className="mag-latest-list">
+              {latest.length === 0 && <li className="mag-empty-row">Nothing here yet.</li>}
+              {latest.map((post) => (
+                <li key={post.id} className="mag-latest-item">
+                  <a href={`/articles/${post.slug}`}>
+                    <span className="mag-latest-title">{post.title}</span>
+                    <span className="mag-latest-date">{formatDate(post.published_at)}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </aside>
+        </section>
+
+        <section className="mag-sections">
+          {SECTION_LABELS.map((label, idx) => {
+            const slice = sectionPool.slice(idx * 2, idx * 2 + 2);
+            if (slice.length === 0) return null;
+            return (
+              <div key={label} className="mag-section">
+                <h3 className="mag-section-title">{label}</h3>
+                <div className="mag-section-grid">
+                  {slice.map((post) => (
+                    <a
+                      key={post.id}
+                      href={`/articles/${post.slug}`}
+                      className="mag-card"
+                    >
+                      <div className="mag-card-media">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src={getDriveImage(post.image_url)} alt={post.title} />
+                      </div>
+                      <h4 className="mag-card-title">{post.title}</h4>
+                      {post.excerpt && (
+                        <p className="mag-card-excerpt">{post.excerpt}</p>
+                      )}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
         </section>
       </div>
-    </div>
+    </main>
   );
 }

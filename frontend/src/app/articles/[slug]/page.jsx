@@ -34,7 +34,7 @@ export default function ArticlePage() {
 
     const getDriveImage = (url) => {
         const match = url?.match(/\/d\/(.*?)\//);
-        return match ? `https://drive.google.com/uc?export=view&id=${match[1]}` : url;
+        return match ? `https://lh3.googleusercontent.com/d/${match[1]}=w1600` : url;
     };
 
     return (

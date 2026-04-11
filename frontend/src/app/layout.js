@@ -1,7 +1,9 @@
 import "./style/globals.css";
-import "./style/projects.css";
-import "./style/about.css";
-import "./style/blog.css";
+// import "./style/projects.css";
+// import "./style/about.css";
+// import "./style/blog.css";
+import "./style/pages.css";
+import "./style/contact.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import ThemeClient from "@/components/ThemeClient";

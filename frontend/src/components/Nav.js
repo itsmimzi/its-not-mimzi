@@ -11,11 +11,15 @@ export default function Nav() {
             <div className="header-wrapper">
                 <div className="nav-container">
                     <Link href="/" className="logo-wrapper">
-                        <video
+                        {/*<video
                             src="/img/itsnotVideo2.mp4"
                             autoPlay
                             muted
                             loop
+                            className="logo-video"
+                        />*/}
+                        <img
+                            src="/img/frame_v2.png"
                             className="logo-video"
                         />
                         {/*<span className="logo-title">The Blog</span>*/}
@@ -25,6 +29,7 @@ export default function Nav() {
                         <Link className="nav-link" href="/articles">blog</Link>
                         <Link className="nav-link" href="/projects">projects</Link>
                         <Link className="nav-link" href="/about">about</Link>
+                        <Link className="nav-link" href="/contact">contact</Link>
 
                         <button
                             className="theme-button"
@@ -39,9 +44,9 @@ export default function Nav() {
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     stroke="currentColor"
-                                    stroke-width="1.5"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
+                                    strokeWidth="1.5"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
                                     xmlns="http://www.w3.org/2000/svg"
                                 >
                                     <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
@@ -54,9 +59,9 @@ export default function Nav() {
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     stroke="currentColor"
-                                    stroke-width="2"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
                                     xmlns="http://www.w3.org/2000/svg"
                                 >
                                     <circle cx="12" cy="12" r="5"></circle>
