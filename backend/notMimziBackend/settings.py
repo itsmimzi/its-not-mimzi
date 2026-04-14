@@ -42,7 +42,7 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 CORS_ALLOW_ALL_ORIGINS = False
 CORS_ALLOWED_ORIGINS = config(
     'CORS_ALLOWED_ORIGINS',
-    default='http://localhost:3000,http://192.168.1.254:3000'
+    default='http://localhost:3000, http://192.168.1.254:3000, https://itsnotmimzi.dev '
 ).split(',')
 
 # Application definition
