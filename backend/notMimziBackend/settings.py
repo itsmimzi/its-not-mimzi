@@ -48,6 +48,13 @@ CORS_ALLOWED_ORIGINS = [
     ).split(',')
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    o.strip() for o in config(
+        'CSRF_TRUSTED_ORIGINS',
+        default='https://its-not-mimzi-production.up.railway.app,https://itsnotmimzi.dev',
+    ).split(',')
+]
+
 # Application definition
 
 INSTALLED_APPS = [
